@@ -1,0 +1,53 @@
+/*top background*/
+.intro {
+    height: 95%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: url('/images/intro.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.intro-message {
+    text-align: center;
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+/*Big header*/
+.intro-message > h1 {
+    margin-top: -50px;
+    text-shadow: 2px 1px 2px #000;
+    font-size: 5em;
+    color: rgba(255, 255, 255, 0.7);
+}
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+/*small header*/
+.intro-message > h3 {
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    color: white;
+}
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+    .intro-divider {
+        width: 100%;
+    }
+}
+/*line*/
+hr.intro-divider {
+    border: 1px outset rgba(255, 255, 255, 0.2);
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    width: 100%;
+}
+
+a {
+    color: black;
+}

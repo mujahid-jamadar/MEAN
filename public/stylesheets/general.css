@@ -1,0 +1,64 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+/* ----------------------- Navigation Bar ----------------------- */
+#navbar-bg {
+    background:rgba(192, 192, 192, 0.9);
+}
+
+.topnav {
+    font-size: 16px;
+    border-bottom: 1px outset rgba(192, 192, 192, 0.5);
+    background: rgba(192, 192, 192, 0.9);
+    box-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.topnav ul.navbar-nav li a {
+    background: rgba(28, 28, 28, 0.1);
+    color: #000;
+}
+.topnav ul.navbar-nav li a:hover,
+.topnav ul.navbar-nav li a:focus
+{
+    background: rgba(255, 255, 255, 0.5);
+    color: #000;
+}
+.topnav .navbar-brand {
+    background: rgba(28, 28, 28, 0.1);
+    color: #000;
+}
+.topnav .navbar-brand:hover,
+.topnav .navbar-brand:focus {
+    background: rgba(255, 255, 255, 0.5);
+    color: #000;
+}
+
+/* ----------------------- Footer ----------------------- */
+footer {
+    clear: left;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: rgba(0, 0, 0, 0.3);
+}
+#left {
+    float:left
+}
+#right{
+    float:right
+}

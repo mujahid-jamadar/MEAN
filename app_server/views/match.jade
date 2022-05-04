@@ -1,0 +1,118 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  script(src='/javascripts/angular.min.js')
+  include geo.js
+  include matchAngular.js
+  script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-mZN2QbvwGy6IVwgdz-hmoMo_PFtvzRU&libraries=places&callback=initAutocomplete" async defer)
+
+  <style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style>
+  -  function tolocal(s) { return s.toLocaleString(); };
+  
+block content
+  div(ng-app="matchApp" ng-controller="matchCtrl").container
+    .row(style="margin-top:100px; margin-botton 100px")
+      .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1
+        .twt-wrapper
+          .panel.panel-info
+            .panel-heading
+              legend  Partners Meet your Requirements
+            .panel-body
+
+              p
+              form(method="post",action="/match",class="form-inline justified")
+                .form-group
+                  .col-xs-3
+                    label Sex &nbsp;&nbsp;
+                    select(class="form-control" id="sex")
+                      option(value = "Any" selected) Any &nbsp;&nbsp;
+                      option(value = "Male") Male &nbsp;&nbsp;
+                      option(value = "Female") Female &nbsp;&nbsp;
+                  .col-xs-4
+                    label Sports  &nbsp;&nbsp;
+                      select(class="form-control" id="sport")
+                        option(value = "Any" selected) Any &nbsp;&nbsp;
+                        option(value = "Basketball") Basketball &nbsp;&nbsp; 
+                        option(value = "Football") Football &nbsp;&nbsp; 
+                        option(value = "Fitness") Fitness &nbsp;&nbsp; 
+                        option(value = "Swimmning") Swimmning &nbsp;&nbsp; 
+                        option(value = "Running") Running &nbsp;&nbsp; 
+                  .col-xs-2
+                    label Skill  &nbsp;&nbsp;
+                      select(class="form-control"  id="skill")
+                        option(value = 5 selected) 5
+                        - for (var i = 0; i < 11; ++i) 
+                          option(value = "#{i}") #{i}
+                  
+                        
+                  .col-xs-3
+                    label Age  &nbsp;&nbsp;&nbsp;
+                    input(class="form-control",type="Number",id="age",max=100,min=0,value="25")
+                  .col-xs-8
+                    label Address &nbsp;&nbsp;
+                    input(type="text",class="form-control",id="address")
+                p
+                input(type="hidden")
+                
+                input(type="button",value="Refresh",onClick="window.location.reload()",class="btn btn-primary btn-sm pull-left")
+                input(type="button",class="btn btn-primary btn-sm pull-right",onclick="location.href='users/prefer?edit=1'",value="Edit Prefer")
+                input(type="button",class="btn btn-primary btn-sm pull-right",value="Find",ng-click="updateForm()")
+                
+                input(type="button",class="btn btn-primary btn-sm pull-left",onclick="location.href='/match?map=1'",value="Map")
+              br
+            if(error)
+                script alert("#{error}")
+            
+            
+            if(partners)
+              .panel-body
+                .clearfix
+                  .media-body
+                      span.text-muted.pull-left
+                      small.text-muted Click Username to leave a message
+
+                      ul(class="media-list",ng-show="normal")
+                        - var i = 0
+                        for partner in partners
+                          if(partner.email!=user.username)
+                            if(partner.sexdiff)
+                              if(partner.sportsdiff)
+                                - i = i+1
+                                li.media
+                                  .media-body
+                                    span.text-muted.pull-right
+                                      small.text-muted 
+                                    strong.text-success
+                                      span.badge #{i} 
+                                      &nbsp;&nbsp;&nbsp;&nbsp;    
+                                      a(href="/view/comment?username=#{partner.email}") #{partner.email}
+                                      p
+                                    - distance = Math.round(partner.dist*10000)
+                                    p  Sex: #{partner.sex} |  Age: #{partner.age} | Sports: #{partner.sports} | Skill Degree: #{partner.skill} | Distance #{distance} Miles &nbsp;&nbsp;&nbsp;
+                                      br
+                                      br
+                                      a(id=i).text-muted.pull-right
+                                      button(class="text-muted pull-right",name=i,style="display:inline",onclick="return geocodeLatLng([#{partner.Adress[0]},#{partner.Adress[1]}],#{i})") See Address
+
+                      ul(class="media-list",ng-show="search",ng-repeat="part in teammates")
+                          li(ng-if="(part.email != user.username) && ( (part.sexdiff != false) || (part.sexdiff == null) ) && ( (part.sportsdiff != false) || (part.sportsdiff == null) )").media.media-body         
+                            span.text-muted.pull-right 
+                              small.text-muted 
+                            strong.text-success 
+                              span.badge  {{$index}}
+                              &nbsp;&nbsp;&nbsp;&nbsp; 
+                              a(href="/view/comment?username={{part.email}}") {{part.email}}
+                              p
+                            p Sex: {{part.sex}} | Age: {{part.age}} | Sports: {{part.sports}} | Skill {{part.skill}} | Distance {{Math.round(part.dist*1000)}} Miles &nbsp;&nbsp;&nbsp;
+                              br
+                              br
+                              a(id=-i).text-muted.pull-right 
+                              input(type="hidden",value="{{part.Adress[1]}}",id='lat{{$index}}')
+                              input(type="hidden",value="{{part.Adress[0]}}",id='lng{{$index}}')
+                              a(id='show{{$index}}').text-muted.pull-right
+                              button(id = 'button{{$index}}',style="display:inline",ng-click="getaddress($index)").text-muted.pull-right See Address
+                              
+                              
+                          

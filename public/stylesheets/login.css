@@ -1,0 +1,9 @@
+.login {
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    width: 400px;
+}
+legend {
+    color: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,26 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+block content
+
+  .intro#home
+    .login.container
+      form(action="/login",method="POST")
+        fieldset
+          legend  Features
+          br
+          p 
+            a(href="/reset") Reset Password
+          p 
+            a(href="/users/profile") Profile
+          p 
+            a(href="/users/prefer") Preference 
+          p
+            a(href="/match") Find Partners
+          p
+            a(href="/view/comment") Messages
+          p 
+            a(href="/view/list?listid=1") Partners You Visited
+          p
+            a(href="/view/list?listid=2") Partners Visited You 

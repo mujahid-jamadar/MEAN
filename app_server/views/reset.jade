@@ -1,0 +1,30 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  script(src="/javascripts/register.js")
+block content
+
+  #home.intro
+    .login.container
+      form(action="/reset",method="POST",name ="register",onsubmit="return registerSubmit()" )
+        fieldset
+          legend Reset Password
+          br
+          p Email:
+          if(error)
+            p(style="font-style:italic;font-size:15px;color:purple") #{error} 
+          if(user)
+            input(type="email",name="username",value="#{user.username}" required)
+          else
+            input(type="email",name="username",placeholder="email" required)
+          p OldPassword:
+          input(type="password",name = "oldpassword",id= "oldpassword", placeholder = "old password" required)
+          p NewPassword:
+          input(type="password",name = "newpassword",id= "password", placeholder="new password" required)
+          p ComfirmPassword:
+          input(type="password",name = "confirmpassword",id="password2", placeholder="new password again" required)
+          br
+          input(type="submit",value="Reset password")
+          input(type="reset", value="Clear form")
+          br

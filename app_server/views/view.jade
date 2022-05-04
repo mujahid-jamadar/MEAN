@@ -1,0 +1,23 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  -  function tolocal(s) { return s.toLocaleString(); };
+block content
+
+  #home.intro
+    .login.container
+      fieldset
+        if(listid==1)
+          legend List of Partners you have visited
+        else
+          legend List of Partners have visited you
+        for user in users
+          p Time: #{tolocal(user.visit_time)}
+          if(listid==1)
+            p Visited 
+              a(href="/view?id=#{user.host_id}",style="color:purple") #{user.host_username} 
+          else
+            p Partner 
+              a(href="/view?id=#{user.vistor_id}",style="color:purple") #{user.vistor_username} 
+            

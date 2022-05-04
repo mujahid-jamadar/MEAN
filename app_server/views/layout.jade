@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title Sport Partner
+    link(rel='stylesheet', href='/stylesheets/general.css')
+    meta(charset='UTF-8')
+    script(type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    script(type='text/javascript' src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    block link
+  body
+    nav#navbar-bg.navbar.navbar-default.navbar-fixed-top.topnav
+      .container.topnav
+        .navbar-header
+          button.navbar-toggle(type="button" data-toggle="collapse" data-target="#navbar")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand.topnav(href="/") Sport Partner
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            if (user)
+              li
+                a(href='/users') #{user.username}
+              li
+                a(href="/logout") Logout
+            else
+              li
+                a(href="/register") Register
+              li
+                a(href="/login") Login
+            li
+              a(href="/about") About
+
+    block content
+      .bg-overlay
+    include footer

@@ -1,0 +1,31 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  script(src="/javascripts/register.js")
+block content
+  #home.intro
+    .login.container
+      form(name="register",method ='POST',action='/register',onsubmit="return registerSubmit()")
+        fieldset
+          legend Register your Sport Partner account
+          br
+          p Email:
+          if(namerror)
+            p(style="font-style:italic;font-size:15px;color:purple") #{namerror}
+          input(type="email",name="username" placeholder="Enter your email" required)
+          br
+          br
+          p Password:
+          if(errors)
+            p(style="font-style:italic;font-size:15px;color:purple") #{errors}
+          input(type="password",name = "password",id="password" placeholder="Enter your password" required)
+          br
+          br
+          p Re-enter Passpord:
+          input(type="password",name = "repassword", id="password2" placeholder="Re-enter your email" required)
+          br
+          br
+          input(type="submit",value="Register")
+          input(type="reset", value="Clear Form")
+          br

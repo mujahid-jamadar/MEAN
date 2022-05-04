@@ -1,0 +1,77 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  <style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style>
+  -  function tolocal(s) { return s.toLocaleString(); };
+block content
+  .container
+    .clearfix(style="margin-bottom:100px;")
+    .row
+      .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-sm-10.col-sm-offset-1
+        .twt-wrapper
+          .panel.panel-info
+            if(all)
+              .panel-heading
+                if(who)
+                  legend Partners leave messages to you
+                else
+                  legend Partners you leave messages to
+              .panel-body
+                input(type="button" value="Refresh" onClick="window.location.reload()" class="btn btn-primary btn-sm pull-right")
+                input(type="button" class="btn btn-primary btn-sm pull-left" onclick="location.href='/view/comment'" value="Inbox")
+                input(type="button" class="btn btn-primary btn-sm pull-left" onclick="location.href='/view/comment?id=1'" value="SendBox")
+                input(type="button" class="btn btn-primary btn-sm pull-left" onclick="location.href='/match?map=1'" value="Find Some Partners")
+              .panel-body
+                .clearfix
+                  .media-body
+                    ul.media-list
+                      for sender in all
+                        li.media
+                          .media-body
+                            span(class="text-muted pull-right") &nbsp;&nbsp;&nbsp;&nbsp;
+                              small.text-muted Recently #{tolocal(sender.created_time)}
+                            strong(class="text-success")
+                              if(sender.sender)
+                                a(href="/view/comment?username=#{sender.sender}") #{sender.sender}
+                              else
+                                a(href="/view/comment?username=#{sender.reciever}") #{sender.reciever}
+                            span(class="text-muted pull-right") 
+                              small.text-muted Total #{sender.Count}
+                            p #{sender.commentbody}
+            if(host)
+              .panel-heading
+                legend  Messages between you and 
+                  a(href="/view?id=#{host._id}") #{host.username}
+              .panel-body
+                form(method="post" action="/view/comment")
+                  textarea(class="form-control" name='comments' placeholder="Leave Your message" required)
+                  br
+                  input(type="hidden" name="host_username" value="#{host.username}")
+                  input(type="submit" class="btn btn-primary btn-sm pull-right" value="Submit")
+                  input(type="button" value="Refresh" onClick="window.location.reload()" class="btn btn-primary btn-sm pull-left")
+                  input(type="button" class="btn btn-primary btn-sm pull-left" onclick="location.href='/view/comment'" value="Inbox")
+                  input(type="button" class="btn btn-primary btn-sm pull-left" onclick="location.href='/view/comment?id=1'" value="SendBox")
+                  input(type="button" class="btn btn-primary btn-sm pull-left" onclick="location.href='/match?map=1'" value="Find Someone else")
+                br
+            if(error)
+                script alert("#{error}")
+            
+            if(messages)
+              .panel-body
+                .clearfix
+                  .media-body
+                      ul.media-list
+                        for message in messages
+                          li.media
+                            .media-body
+                              span(class="text-muted pull-right") 
+                                small.text-muted #{tolocal(message.created_time)} &nbsp;&nbsp;&nbsp;&nbsp;
+                              strong(class="text-success") 
+                                if(message.sender==user.username)
+                                  a(href="/view?id=#{message.sender_id}") You
+                                else
+                                  a(href="/view?id=#{message.sender_id}") #{message.sender}
+                              p  #{message.commentbody}
+    div(class="clearfix" style="margin-top:700px;")

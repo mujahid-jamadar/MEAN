@@ -1,0 +1,17 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/index.css')
+
+block content
+  #home.intro
+    .container
+      .row
+        .col-lg-12
+          .intro-message
+            h1 Sport Partner
+            if(username)
+              h3 Welcome #{username} !
+            else if (user)
+              h3 Welcome #{user.username} !
+            hr.intro-divider
+            h3 Find the best Sport Partner for your health

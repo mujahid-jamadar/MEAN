@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for sportpartner/app_server/controller/match.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">sportpartner/app_server/controller/</a> match.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20.69% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.14% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">23.08% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/26</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var Prefer= require('../models/prefer');
+var Profile = require('../models/profile');
+var Account = require('../models/account');
+/* Get index page of match*/
+// will need to use 2D search here
+module.exports.index = function(req,res){
+  <span class="missing-if-branch" title="if path not taken" >I</span>if(req.user){
+<span class="cstat-no" title="statement not covered" >    Prefer.findOne({email:req.user.username},<span class="fstat-no" title="function not covered" >function(err1,prefer){</span></span>
+<span class="cstat-no" title="statement not covered" >      if(err1) <span class="cstat-no" title="statement not covered" >throw err1;</span></span>
+<span class="cstat-no" title="statement not covered" >      if(prefer){</span>
+<span class="cstat-no" title="statement not covered" >        var agewant = prefer.age;</span>
+<span class="cstat-no" title="statement not covered" >        var skillwant = prefer.skill;</span>
+<span class="cstat-no" title="statement not covered" >        var sex = prefer.sex;</span>
+<span class="cstat-no" title="statement not covered" >        var sports = prefer.sports;</span>
+<span class="cstat-no" title="statement not covered" >        Profile.findOne({email:req.user.username},<span class="fstat-no" title="function not covered" >function(err,profile){</span></span>
+<span class="cstat-no" title="statement not covered" >          if(err) <span class="cstat-no" title="statement not covered" >throw err;</span></span>
+<span class="cstat-no" title="statement not covered" >          if(profile){</span>
+<span class="cstat-no" title="statement not covered" >            var loc = profile.Adress;</span>
+<span class="cstat-no" title="statement not covered" >            console.log(profile.Adress);</span>
+<span class="cstat-no" title="statement not covered" >            Profile.aggregate()</span>
+              .near(
+                {
+                  near:loc,
+                  distanceField: "dist",
+                  spherical: true
+                }
+              )
+              .project(
+                {
+                  '_id':1,
+                  'email':1,
+                  'sexdiff':{$eq:["$sex",sex]},
+                  'sports':1,
+                  'sportsdiff':{$eq:["$sports",sports]},
+                  'agediff':{$abs:{$subtract:["$age",agewant]}},
+                  'age':1,
+                  'sex':1,
+                  'skilldiff':{$abs:{$subtract:["$skill",skillwant]}},
+                  'skill':1,
+                  'Adress':1,
+                  'dist':1
+                }
+              )
+              .project(
+                {
+                  'diff':{$add:["$skilldiff",{$divide:["$agediff",5]},{$multiply:["$dist",200]}]},
+                  '_id':1,
+                  'email':1,
+                  'sexdiff':1,
+                  'sex':1,
+                  'agediff':1,
+                  'age':1,
+                  'skilldiff':1,
+                  'skill':1,
+                  'sportsdiff':1,
+                  'sports':1,
+                  'Adress':1,
+                  'dist':1
+                }
+              )
+              .sort("diff")
+              .exec(<span class="fstat-no" title="function not covered" >function(errs,dis){</span>
+<span class="cstat-no" title="statement not covered" >                if(errs) <span class="cstat-no" title="statement not covered" >throw errs;</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log(dis);</span>
+<span class="cstat-no" title="statement not covered" >                if(req.query.map==1){</span>
+                // show map
+<span class="cstat-no" title="statement not covered" >                  res.render('map',{user:req.user,dist:dis,host:profile});</span>
+                }
+                else{
+                // show without map
+<span class="cstat-no" title="statement not covered" >                  res.render('match',{user:req.user,partners:dis,host:profile});</span>
+                }
+              })
+          }
+          else{
+<span class="cstat-no" title="statement not covered" >            res.redirect('/users/profile');</span>
+          }
+        });
+      }
+      else{
+<span class="cstat-no" title="statement not covered" >        res.redirect('/users/prefer');</span>
+      }
+    });
+  }
+  else{
+    res.redirect('/login');
+  }
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri May 26 2017 21:17:01 GMT+0800 (AWST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

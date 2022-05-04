@@ -1,0 +1,91 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  include geo.js
+  script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-mZN2QbvwGy6IVwgdz-hmoMo_PFtvzRU&libraries=places&callback=initAutocomplete" async defer)
+
+block content
+
+  #home.intro
+    .login.container
+        fieldset
+          if(errors)
+              script alert("#{errors}")
+              
+          if(profile)
+            legend This is your Sport Partner Profile
+            br
+            p Username: #{user.username}
+            p Sex: #{profile.sex}
+            p Age: #{profile.age}
+            p Favorite Sports: #{profile.sports}
+            p Skill Degree: #{profile.skill}
+
+            p Address:
+            p #{address}
+            p
+              button
+                a(href="./editprofile") Edit your Profile
+              button 
+                a(href="/match") Find Partners
+          else if (view)
+            legend The Sport Partner's Profile
+            br
+            if(viewerror)
+              p(style="font-style:italic;font-size:15px;color:purple") #{viewerror}
+            else        
+              p Username: #{view.email}
+              p Sex: #{view.sex}
+              p Age: #{view.age}
+              p Favorite Sports: #{view.sports}
+              p Skill Degree: #{view.skill}
+              p Address:
+              p #{address}
+              p 
+                button
+                  a(href="/view/comment?username=#{view.email}") Leave a Message
+          else
+            form(name = "profile",action="./profile", method="POST",onsubmit="return geocodeAddress()")
+              legend Edit your Sport Partner Profile
+              br
+              if(error)
+                p(style="font-style:italic;font-size:15px;color:purple") #{error}
+              p Sex:
+              select(id="sex", name="sex" required)
+                if(profiles)
+                  option(value="#{profiles.sex}" Selected) #{profiles.sex}
+                  - var age = profiles.age
+                  - var sports = profiles.sports
+                  - var skill = profiles.skill
+
+                else
+                  - var age = 25
+                  - var skill = 5
+                option(value="Male") Male
+                option(value="Female" ) Female
+              p Age:
+              input(type="Number",size="10",id="age",min=0, max=99, name="age",value="#{age}" required)
+              p Favorite Sports
+              select(id="sports", name="sports" required)
+                if(sports)
+                  option(value="#{sports}" Selected) #{sports}
+                option(value="Basketball") Basketball
+                option(value="Fitness") Fitness
+                option(value="Football") Football
+                option(value="Swimmning") Swimmning
+                option(value="Running") Running
+
+              p Skill Degree
+              input(type="range",id="skill",name="skill",value = "#{skill}", min="0",max="10")
+              p Address
+              if(address)
+                input(type="text",id="address",onFocus="geolocate()",value = "#{address}",size="50" required)
+              else
+                input(type="text",id="address",onFocus="geolocate()",size="50",placeholder="Enter your address..." required)
+              input(type="hidden",name="addresslat",id='addresslat')
+              input(type="hidden",name="addresslng",id='addresslng')
+              br
+              input(type="submit",value="Submit")
+              input(type="reset", value="Reset")
+              br

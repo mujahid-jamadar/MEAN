@@ -1,0 +1,64 @@
+extends layout
+block link
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  link(rel='stylesheet', href='/stylesheets/index.css')
+
+block content
+
+  #home.intro
+    .login.container
+      form(name = "prefer",action="./prefer", method="POST")
+        fieldset
+          if(error)
+              script alert("#{error}")
+              
+          if(prefer)
+            legend This is your Sport Partner Preference
+            br
+            p Prefered Sex: #{prefer.sex}
+            p Prefered Age: #{prefer.age}
+            p Favorite Sports: #{prefer.sports}
+            p Prefered Skill Degree: #{prefer.skill}
+            p
+              button
+                a(href="./prefer?edit=1") Edit your preference
+              button
+                a(href="/match") Find Partners
+          else
+            legend Edit your Sport Partner preference
+            br
+            if(error)
+              p(style="font-style:italic;font-size:15px;color:purple") #{error}
+            p Pefer Partner Sex:
+            select(id="sex", name="sex" required)
+              if(prefers)
+                option(value="#{prefers.sex}" Selected) #{prefers.sex}
+                - var age = prefers.age
+                - var sports = prefers.sports
+                - var skill = prefers.skill
+
+              else
+                - var age = 25
+                - var skill = 5
+              option(value="Male") Male
+              option(value="Female" ) Female
+            p Prefer Partner Age:
+            input(type="Number",size="10",id="age",min=0, max=99, name="age",value="#{age}" required)
+            p Prefered Sports
+            select(id="sports", name="sports" required)
+              if(sports)
+                option(value="#{sports}" Selected) #{sports}
+              option(value="Basketball") Basketball
+              option(value="Fitness") Fitness
+              option(value="Football") Football
+              option(value="Swimmning") Swimmning
+              option(value="Running") Running
+
+            p Prefer Partner Skill Degree
+            input(type="range",id="skill",name="skill",value = "#{skill}", min="0",max="10")
+
+            br
+            input(type="submit",value="Submit")
+            input(type="reset", value="Reset")
+            br
+  include geo.js
